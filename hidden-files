@@ -1,6 +1,7 @@
 #!/bin/bash
 function printUsageAndExit {
-  echo "Usage: hidden-files [show | hide]\nMay require Finder reset, i.e. killall Finder."
+  echo "Usage: hidden-files [show | hide]"
+  echo "May require Finder reset, i.e. killall Finder."
   exit
 }
 
