@@ -1,0 +1,19 @@
+#!/bin/bash
+function printUsageAndExit {
+  echo "Usage: hidden-files [show | hide]"
+  exit
+}
+
+if [ "$#" -ne 1 ]; then
+  printUsageAndExit
+fi
+
+if [ "$1" == show ]; then
+  shouldShow=YES
+elif [ "$1" == hide ]; then
+  shouldShow=NO
+else
+  printUsageAndExit
+fi
+
+defaults write com.apple.finder AppleShowAllFiles ${shouldShow}
