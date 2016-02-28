@@ -44,7 +44,7 @@ If present, hidden-files automatically restarts your Finder after changing visib
 
 ### [Release Notes](RELEASE_NOTES.md)
 
-[License](License)
+[License](LICENSE)
 -------
 
 The MIT License (MIT)
