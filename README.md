@@ -15,7 +15,7 @@ Simply execute the installation script via
 
 in order to add the hidden-files binary to your PATH. You may need to restart your Terminal for changes to become effective.
 
-### Usage:
+### Usage
 
 To show hidden files in Finder:
 
@@ -24,15 +24,22 @@ hidden-files show
 ```
 
 To hide them again:
+
 ```bash
 hidden-files hide
 ```
 
-Changing visibilty may require you to restart Finder in oder to become effective:
+Changing visibilty without the [-r option](#optionRestartFinder) may require you to restart Finder in oder to become effective:
 
 ```bash
 killall Finder
 ```
+
+#### Supported Options
+
+##### `-r | --restartFinder`<a name="optionRestartFinder"></a>
+If present, hidden-files automatically restarts your Finder after changing visibility settings.
+
 
 
 ### [Release Notes](RELEASE_NOTES.md)
