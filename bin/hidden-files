@@ -1,20 +1,57 @@
 #!/bin/bash
+
+arg=""
+restartFinder=false
+
 function printUsageAndExit {
-  echo "Usage: hidden-files [show | hide]"
+  echo "Usage: hidden-files [-r | --restartFinder] <show | hide>"
   echo "May require Finder reset, i.e. killall Finder."
   exit
 }
 
-if [ "$#" -ne 1 ]; then
+function setArg {
+  if [ -z "$arg" ]; then
+    arg="$1"
+  else
+    printUsageAndExit
+  fi
+}
+
+if [ "$#" -lt 1 ]; then
+  echo 'Missing argument (show | hide)'
   printUsageAndExit
 fi
 
-if [ "$1" == show ]; then
-  shouldShow=YES
-elif [ "$1" == hide ]; then
-  shouldShow=NO
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    -r|--restartFinder) restartFinder=true; shift 1;;
+    -*) echo "Unknown option: $1" >&2; printUsageAndExit;;
+    *) setArg $1; shift 1;;
+  esac
+done
+
+if [ -z "$arg" ]; then
+  printUsageAndExit
 else
-  printUsageAndExit
-fi
+  if [ "$arg" == show ]; then
+    shouldShow=YES
+  elif [ "$arg" == hide ]; then
+    shouldShow=NO
+  else
+    echo "Unknown argument: $arg"
+    printUsageAndExit
+  fi
 
-defaults write com.apple.finder AppleShowAllFiles ${shouldShow}
+  defaults write com.apple.finder AppleShowAllFiles ${shouldShow}
+  if [ "$shouldShow" == YES ]; then
+    echo "Hidden files are now visible."
+  else
+    echo "Hidden files are now invisible."
+  fi
+
+  if $restartFinder ; then
+    killall Finder
+  else
+    echo -e 'Changes may require Finder restart to become effective, i.e.:\n   killall Finder'
+  fi
+fi
