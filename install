@@ -1,0 +1,27 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+pushd ${DIR} > /dev/null
+
+function printAddedToPathAndExit {
+  echo "hidden-files added to path."
+  echo "You may need to restart your Terminal for changes to become effective."
+  exit
+}
+
+BASH_PROFILE=~/.bash_profile
+if [ -e "$BASH_PROFILE.local" ]; then
+  BASH_PROFILE=~/.bash_profile.local
+fi
+
+if [ $(command -v hidden-files >/dev/null 2>&1 ]; then
+  printAddedToPathAndExit
+else
+  echo "" >> ${BASH_PROFILE}
+  echo "# Setting PATH for hidden-files" >> ${BASH_PROFILE}
+  echo "PATH=\"${DIR}/bin:\${PATH}\"" >> ${BASH_PROFILE}
+  echo "export PATH" >> ${BASH_PROFILE}
+  printAddedToPathAndExit
+fi
+
+popd > /dev/null
