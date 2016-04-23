@@ -1,7 +1,12 @@
 #!/bin/bash
-
-arg=""
+VERSION=1.2.0
+ARG=""
 restartFinder=false
+
+function printVersionAndExit {
+  echo "hidden-files v$VERSION"
+  exit
+}
 
 function printUsageAndExit {
   echo "Usage: hidden-files [-r | --restartFinder] <show | hide>"
@@ -9,36 +14,37 @@ function printUsageAndExit {
   exit
 }
 
-function setArg {
-  if [ -z "$arg" ]; then
-    arg="$1"
+function setARG {
+  if [ -z "$ARG" ]; then
+    ARG="$1"
   else
     printUsageAndExit
   fi
 }
 
 if [ "$#" -lt 1 ]; then
-  echo 'Missing argument (show | hide)'
+  echo 'Missing ARGument (show | hide)'
   printUsageAndExit
 fi
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
     -r|--restartFinder) restartFinder=true; shift 1;;
+    -v|--version) printVersionAndExit;;
     -*) echo "Unknown option: $1" >&2; printUsageAndExit;;
-    *) setArg $1; shift 1;;
+    *) setARG $1; shift 1;;
   esac
 done
 
-if [ -z "$arg" ]; then
+if [ -z "$ARG" ]; then
   printUsageAndExit
 else
-  if [ "$arg" == show ]; then
+  if [ "$ARG" == show ]; then
     shouldShow=YES
-  elif [ "$arg" == hide ]; then
+  elif [ "$ARG" == hide ]; then
     shouldShow=NO
   else
-    echo "Unknown argument: $arg"
+    echo "Unknown ARGument: $arg"
     printUsageAndExit
   fi
 
