@@ -14,7 +14,7 @@ if [ -e "$BASH_PROFILE.local" ]; then
   BASH_PROFILE=~/.bash_profile.local
 fi
 
-if [ $(command -v hidden-files >/dev/null 2>&1 ]; then
+if [ $(command -v hidden-files >/dev/null 2>&1) ]; then
   printAddedToPathAndExit
 else
   echo "" >> ${BASH_PROFILE}
