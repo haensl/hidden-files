@@ -40,7 +40,8 @@ killall Finder
 ##### `-r | --restartFinder`<a name="optionRestartFinder"></a>
 If present, hidden-files automatically restarts your Finder after changing visibility settings.
 
-
+##### `-v | --version`<a name="optionVersion"></a>
+Show the current version.
 
 ### [CHANGELOG](CHANGELOG.md)
 
