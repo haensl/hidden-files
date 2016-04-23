@@ -10,7 +10,7 @@ hidden-files is a simple command line tool to show and hide hidden files (dot-fi
 Simply execute the installation script via
 
 ```bash
-./install.sh
+./install
 ```
 
 in order to add the hidden-files binary to your PATH. You may need to restart your Terminal for changes to become effective.
@@ -42,7 +42,7 @@ If present, hidden-files automatically restarts your Finder after changing visib
 
 
 
-### [Release Notes](RELEASE_NOTES.md)
+### [CHANGELOG](CHANGELOG.md)
 
 [License](LICENSE)
 -------
